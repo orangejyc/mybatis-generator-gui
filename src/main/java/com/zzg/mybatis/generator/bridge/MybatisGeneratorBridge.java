@@ -69,6 +69,11 @@ public class MybatisGeneratorBridge {
         TableConfiguration tableConfig = new TableConfiguration(context);
         tableConfig.setTableName(generatorConfig.getTableName());
         tableConfig.setDomainObjectName(generatorConfig.getDomainObjectName());
+        tableConfig.setCountByExampleStatementEnabled(false);
+        tableConfig.setDeleteByExampleStatementEnabled(false);
+        tableConfig.setUpdateByExampleStatementEnabled(false);
+        tableConfig.setSelectByExampleStatementEnabled(false);
+
         //添加GeneratedKey主键生成
 		if (StringUtils.isNoneEmpty(generatorConfig.getGenerateKeys())) {
 			tableConfig.setGeneratedKey(new GeneratedKey(generatorConfig.getGenerateKeys(), selectedDatabaseConfig.getDbType(), true, null));

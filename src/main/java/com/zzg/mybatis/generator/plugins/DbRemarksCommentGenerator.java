@@ -23,6 +23,9 @@ import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
@@ -48,6 +51,13 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
 
     public void addJavaFileComment(CompilationUnit compilationUnit) {
         // add no file level comments by default
+        // Copyright info
+        compilationUnit.addFileCommentLine("/*");
+        compilationUnit.addFileCommentLine(" * huiguan.com Inc.");
+        compilationUnit.addFileCommentLine(" * Copyright (c) 2017 All Rights Reserved.");
+        compilationUnit.addFileCommentLine(" */");
+        compilationUnit.addFileCommentLine("");
+
         if (isAnnotations) {
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
@@ -83,9 +93,25 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
 
     public void addModelClassComment(TopLevelClass topLevelClass,
                                 IntrospectedTable introspectedTable) {
-        topLevelClass.addJavaDocLine("/**");
-        topLevelClass.addJavaDocLine(" * @author ");
-        topLevelClass.addJavaDocLine(" */");
+        //topLevelClass.addJavaDocLine("/**");
+        //topLevelClass.addJavaDocLine(" * @author ");
+        //topLevelClass.addJavaDocLine(" */");
+
+
+        //DateFormat df=new SimpleDateFormat("YYYY/mm/dd hh:MM");
+        //topLevelClass.addJavaDocLine("/**");
+        //topLevelClass.addJavaDocLine(" * TODO desc "+introspectedTable.getFullyQualifiedTableNameAtRuntime());
+        //topLevelClass.addJavaDocLine(" *          ");
+        //topLevelClass.addJavaDocLine(" * @author create by mybatis generator 1.3.5");
+        //topLevelClass.addJavaDocLine(" * @since $$Revision:TODO version, $$Date: "+df.format(new Date())+" $$");
+        //topLevelClass.addJavaDocLine(" */");
+
+        //topLevelClass.addJavaDocLine("/**");
+        //topLevelClass.addJavaDocLine(" * create by mybatis generator 1.3.5 ");
+        //topLevelClass.addJavaDocLine(" *          ");
+        //topLevelClass.addJavaDocLine(" * @author create by mybatis generator 1.3.5");
+        //topLevelClass.addJavaDocLine(" */");
+
         if(isAnnotations) {
 
             topLevelClass.addAnnotation("@Talbe(name=\"" + introspectedTable.getFullyQualifiedTableNameAtRuntime() + "\")");
